@@ -36,7 +36,7 @@ $("#loginBtn").on('click',function(){
         success: function(response){
             if(response=="success"){
                 iziToast.success({
-                    title: 'Error',
+                    title: 'Noice',
                     position: 'topCenter',
                     message: 'Login Successful!',
                 });
