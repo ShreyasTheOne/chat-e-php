@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Sign Up</title>
+        <link rel="stylesheet" href="iziToast.min.css">
+        <script src="iziToast.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="signup.js"></script>
+    </head>
+
+    <body>
+        <h1>Sign Up</h1>
+        <br>
+        <form name="signupForm" id ="signupForm" autocomplete="off"> 
+        <!-- use ajax for submission, remove method=post-->
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username">
+            <p id="uname_error" class="error_message"></p> 
+            
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password"><br><br>
+
+            <label for="cnfpassword">Confirm Password:</label>
+            <input type="password" name="cnfpassword" id="cnfpassword"><br><br>
+            <p id="cnfp_error" class="error_message"></p> 
+
+             Sex: 
+            <input type="radio" id="male" name="sex" value="male">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="sex" value="female">
+            <label for="female">Female</label><br><br> 
+
+            <label for="email">Email: </label>
+            <input type="text" name="email" id="email"><br><br>
+            <p id="email_error" class="error_message"></p> 
+
+            <label for="phone">Phone number (10-Digit):</label>
+            <input type="text" name="phone" id="phone"><br>
+            <p id="phone_error" class="error_message"></p> 
+
+            <br><input type="button" name="submit" id="submitBtn" value="Sign Up">
+        </form>
+
+        <br>Already have an account? <a href="login.html">Log in</a>
+        
+    </body>
+</html> 

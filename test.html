@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <title>TEST</title>
+        <link rel="stylesheet" href="iziToast.min.css">
+        <script src="iziToast.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="signup.js"></script>
+        <link rel="stylesheet" href="test.css">
+        
+    </head>
+
+    <body>
+    <div class="container">
+        <div class="content">
+            <h1>Sign Up</h1>
+            <br>
+            <form name="signupForm" id ="signupForm" autocomplete="off"> 
+            <!-- use ajax for submission, remove method=post-->
+                
+            <div class="cols">
+                <div class="col1">
+                    <div class="inputdiv">
+                        <label class="label" for="username">Username:</label><br>
+                        <input class="input" type="text" name="username" id="username">
+                        <p id="uname_error" class="error_message"></p>
+                    </div> 
+    
+                    <div class="inputdiv">
+                        <label class="label" for="password">Password:</label><br>
+                        <input class="input" type="password" name="password" id="password">
+                    </div> 
+                    
+                    <div class="inputdiv">
+                        <label class="label" for="cnfpassword">Confirm Password:</label><br>
+                        <input class="input" type="password" name="cnfpassword" id="cnfpassword">
+                        <p id="cnfp_error" class="error_message"></p> 
+                    </div> 
+    
+                </div>
+                
+                <div class="col2">
+                    <div class="inputDiv">
+                        <div class="label">Sex:</div>
+                        <div id="chooseSex">
+                            <input type="radio" id="male" name="sex" value="male">
+                            <label for="male">Male</label>
+                            <input type="radio" id="female" name="sex" value="female">
+                            <label for="female">Female</label>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    <div class="inputdiv">
+                        <label class="label" for="email">Email: </label><br>
+                        <input class="input" type="text" name="email" id="email">
+                        <p id="email_error" class="error_message"></p>
+                    </div> 
+    
+                    <div class="inputdiv">
+                        <label class="label" for="phone">Phone number (10-Digit):</label><br>
+                        <input class="input" type="text" name="phone" id="phone">
+                        <p id="phone_error" class="error_message"></p> 
+                    </div> 
+                    
+                </div>
+            </div>
+
+
+            <div style="display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        width: 100%;
+                        margin-top: 30px;"><input type="button" name="submit" id="submitBtn" value="Sign Up"></div>
+            </form>
+
+            <br>Already have an account? <a href="login.html">Log in</a>
+        </div>
+    </div>
+    </body>
+</html> 
