@@ -194,8 +194,8 @@ $('document').ready(function(){
               });
 
         } else {
-                alert("fail");
-                window.location.replace('signup.html');
+                //alert("fail");
+               // window.location.replace('signup.html');
         }
 });
     
