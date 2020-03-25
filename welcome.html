@@ -1,0 +1,101 @@
+<html>  
+    <head>
+        <title>Welcome</title>
+        <link rel="stylesheet" href="iziToast.min.css">
+        <link rel="stylesheet" href="welcome.css">
+        <script src="iziToast.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="welcome.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div id="popupform">
+                    <div id="pfcontent">
+                        <div id="options">
+                            <div id="firstOp" class="switch">
+                               <p class="optiontext">Personal Information</p>
+                            </div>
+                            <div id="secondOp" class="switch">
+                               <p class="optiontext">Change Password</p>
+                            </div>
+                        </div>
+
+                         
+
+                        <div id="firstForm" class="form">
+                            <div id="firstFormContent">
+                                <form name="personalinfo" id="personalinfo">
+                                    <div id="fcFirstForm">
+                                        <div class="twoinput">
+                                            Current email: <p id="emailch"></p>
+                                            <label for="emailin">New Email:</label>
+                                            <input type="text" name="emailin" id="emailin">
+                                        </div>
+                                        <div class="twoinput">
+                                            Current phone number: <p id="phonech"></p>
+                                            <label for="phonein">New phone number:</label>
+                                            <input type="text" name="phonein" id="phonein">
+                                        </div>
+                                    </div>
+                                
+                                    <div id="scFirstForm">
+
+                                    </div> 
+                                </form>
+                            </div>
+                        </div>
+                        <div id="secondForm" class="form">
+                            <div id="secondFormContent">
+                                <form name="changepassword" id="changepassword">
+                                    <div class="twoinput">
+                                        <label for="currentpass">Current Password:</label>
+                                        <input type="password" name="currentpass" id="currentpass"> 
+                                    </div>
+                                    <div class="twoinput">
+                                        <label for="newpass">New Password:</label>
+                                        <input  type="password" name="newpass" id="newpass"> 
+                                    </div>  
+                                    <div class="twoinput">
+                                        <label for="cnfnewpass">Confirm New Password:</label>
+                                        <input type="password" name="cnfnewpass" id="cnfnewpass"> 
+                                    </div>  
+                                </form>
+                            </div>
+                        </div>
+    
+                        <div id="cancelsubmit">
+                            <div id="cancelbtn" class="switch">
+                                <p class="optiontext">Cancel</p>
+                             </div>
+                             <div id="submitbtn" class="switch">
+                                <p class="optiontext">Change</p>
+                             </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="content">
+                
+                <div class="side-pane">
+                    <div class="side-pane-title">
+                        <div id="profile">
+
+                        </div>
+                        <div id="logOff">
+                            Log off
+                        </div>
+                    </div>
+                    <div class="users-list">
+                        
+                    </div>
+                </div>
+
+
+                <div class="chat-area">
+
+                </div>
+            </div>
+        </div>
+    </body>
+        
+</html>

@@ -33,7 +33,7 @@ $('document').ready(function(){
     });
 
     $('#email').on('input', function(){
-        $email = $('#email').val();
+        $email = $('#email').val().toLowerCase();
 
         $.ajax({
             url: 'signup.php', type: 'post',
@@ -114,6 +114,7 @@ $('document').ready(function(){
         if (passs==0){
             iziToast.warning({
                 position: 'topRight',
+                backgroundColor: '#eb4034',
                 title: 'Bruh',
                 message: 'Passwords don\'t match',
             });
@@ -122,6 +123,7 @@ $('document').ready(function(){
         if (es==0){
             iziToast.warning({
                 position: 'topRight',
+                backgroundColor: '#eb4034',
                 title: 'No, pls',
                 message: 'Invalid email',
             });
@@ -131,6 +133,7 @@ $('document').ready(function(){
         if (ps==0){
             iziToast.warning({
                 title: 'Srsly?',
+                backgroundColor: '#eb4034',
                 position: 'topRight',
                 message: 'Invalid phone number',
             });
@@ -141,6 +144,7 @@ $('document').ready(function(){
             // do something here
             iziToast.warning({
                 title: '-_-',
+                backgroundColor: '#eb4034',
                 position: 'topRight',
                 message: 'Select a gender',
             });
@@ -178,14 +182,15 @@ $('document').ready(function(){
                             iziToast.success({
                                 position: 'topCenter',
                                 title: 'NOICE',
-                                message: 'Registration successful!',
+                                message: 'Registration successful! Redirecting to login page...',
+                                timeout: 3000
                             });
-                            window.location.replace('login.html');
+                            setTimeout(function(){window.location.replace('login.html')}, 3000);
                         } else {
                             iziToast.error({
                                 title: 'Bummer',
                                 position: 'topCenter',  
-                                message: 'Registration failed :(',
+                                message: response,
                             });
 
                             //window.location.replace('login.html');
@@ -199,52 +204,4 @@ $('document').ready(function(){
         }
 });
     
-
-
-    function formSubmit(){
-        callError();
-        if (us==0){
-            alert("E");
-            
-        }
-
-        if (passs==0){
-            iziToast.warning({
-                position: 'topRight',
-                title: 'Bruh',
-                message: 'Passwords don\'t match',
-            });
-        }
-
-        if (es==0){
-            iziToast.warning({
-                position: 'topRight',
-                title: 'No, pls',
-                message: 'Invalid email',
-            });
-        }
-
-        if (ps==0){
-            iziToast.warning({
-                title: 'Srsly?',
-                position: 'topRight',
-                message: 'Invalid phone number',
-            });
-        }
-
-        if ($('input[name=sex]:checked').length == 0) {
-            gs=0;
-            // do something here
-            iziToast.warning({
-                title: '-_-',
-                position: 'topRight',
-                message: 'Select a gender',
-            });
-        } else{
-            gs=1;
-        }
-
-        
-    }
-
 });
