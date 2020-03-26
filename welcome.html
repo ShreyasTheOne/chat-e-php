@@ -27,22 +27,28 @@
                             <div id="firstFormContent">
                                 <form name="personalinfo" id="personalinfo">
                                     <div id="fcFirstForm">
-                                        <div class="twoinput">
-                                            Current email: <p id="emailch"></p>
+                                        <div class="oneinput">
+                                            <p id="emailch">Current email:</p>
                                             <label for="emailin">New Email:</label>
                                             <input type="text" name="emailin" id="emailin">
                                         </div>
-                                        <div class="twoinput">
-                                            Current phone number: <p id="phonech"></p>
+                                        <div class="oneinput">
+                                            <p id="phonech">Current phone number: </p>
                                             <label for="phonein">New phone number:</label>
                                             <input type="text" name="phonein" id="phonein">
                                         </div>
                                     </div>
-                                
-                                    <div id="scFirstForm">
-
-                                    </div> 
                                 </form>
+         <!-- FORM STARTS HERE-->   <form name="picUpload" id="picUpload">
+                                    <div id="scFirstForm">
+                                        <div id="dpDiv">
+                                            <img src="pictures/defaultdp.png" alt="Profile Picture" id="dp"><!-- Change src to blank after editing onload function in js -->
+                                        </div>
+                                        
+                                        <input type="file" id="file" name="file">
+                                        <input type="button" id="uploadBtn" name="uploadBtn" value="Upload">
+                                    </div> 
+        <!-- FORM ENDS HERE-->  </form>
                             </div>
                         </div>
                         <div id="secondForm" class="form">
@@ -79,7 +85,7 @@
                 <div class="side-pane">
                     <div class="side-pane-title">
                         <div id="profile">
-
+                            Settings
                         </div>
                         <div id="logOff">
                             Log off
