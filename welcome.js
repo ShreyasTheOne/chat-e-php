@@ -20,7 +20,7 @@ $("document").ready(function(){
         }
     });
    
-    listUsers();
+    welcomeUser();
 
     $("#logOff").on('click', function(){
         iziToast.show({
@@ -169,7 +169,7 @@ $("document").ready(function(){
 });
 
 
-function listUsers(){
+function welcomeUser(){
     $.ajax({
         url: 'welcome.php', type: 'post',
 
@@ -533,6 +533,77 @@ function updateDP(newurl){
     $("#dpWelcome").attr('src', newurl);
 }
 
-function chatwith(user){
-    alert(user);
+function chatwith(user, pic){
+    // alert(user);
+    document.getElementById("welcome-user").style.display="none";
+    document.getElementById("messages-header").style.display="flex";
+    document.getElementById("message-input").style.display="block";
+    document.getElementById("message-input-container").style.display="flex";
+    document.getElementById("msg-send-btn").style.display="block";
+    document.getElementById("chatuser").innerHTML=user;
+    $("#chatimg").attr('src', pic)
+
+    showConversation(username, user);
+}
+
+function showConversation(sender, receiver){
+    showConvRepeated(sender, receiver);
+   setInterval(function(){ showConvRepeated(sender, receiver);}, 1000);
+}
+
+function showConvRepeated(sender, receiver){
+    //alert(sender+ " " + receiver);
+    $.ajax({
+        url: 'chat.php', type: 'post',
+
+        data: {
+            'get_chat': 1,
+            'sender': sender,
+            'receiver': receiver
+        },
+        success: function(response){
+            if(response=="yettobegin"){
+                alert("yettobegin");
+            }else{
+            var mes = response.split("¬");
+                // alert(mes);
+                setMessages(mes);
+            }
+        }
+    });
+}
+
+function setMessages(mes){
+    let meslength = mes.length;
+    $("#messages-area").empty();
+    for(let i=0; i<meslength-1; i++){
+        // alert(mes[i])
+        pushMessage(mes[i]);
+    }
+}
+
+function pushMessage(str){
+    
+
+    var arr = str.split('±');
+    //alert(arr)
+
+    var text, setter;
+        text = arr[0];
+        setter = arr[1];  
+    
+    var mdiv = document.createElement("div");
+
+    mdiv.classList.add("mdiv");
+
+    mdiv.innerHTML = "<p class='mdivtext'>"+ text +"</p>";
+    
+    if(setter == username){
+        mdiv.classList.add("senderm");
+    } else {
+        mdiv.classList.add("receiverm");
+    }
+    
+    document.getElementById("messages-area").appendChild(mdiv);
+    
 }

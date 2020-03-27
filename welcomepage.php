@@ -20,7 +20,7 @@
 
     <body>
         <div class="container">
-            <div class="welcome-user">
+            <div id="welcome-user">
                     <div id="dpDivWelcome">
                         <img alt="Profile Picture" id="dpWelcome">
                         <p id="welcome-text"></p>
@@ -108,8 +108,7 @@
                         </div>
                     </div>
                     <div class="users-list">
-                    <?php    
-                                           
+                    <?php                         
                             $sql = "SELECT profilepic, username  FROM shreyas_users";
                             $result = mysqli_query($conn, $sql);
                             if(mysqli_num_rows($result)>0){
@@ -119,7 +118,7 @@
                                 if($uname==$username){
                                     continue;
                                 }
-                                $output = "<div class='user_div' onclick='chatwith(`".$uname."`)' id='".$uname."'>
+                                $output = "<div class='user_div' onclick='chatwith(`".$uname."` , `".$pp."` )' id='".$uname."'>
                                 <div class='user_img_container'> <img src='".$pp."' alt='PIC' class = 'user_img'> </div>
                                 <div class='user_name'> <p class='user_name_text'>".$uname." </p> </div>
                                             
@@ -130,7 +129,7 @@
                                 }
                                
                             } else{
-                                $pp = "OMG";
+                                echo "OMG";
                             }
                         ?>
                     
@@ -139,8 +138,14 @@
 
 
                 <div class="chat-area">
-                        <div class="messages-header"></div>
-                        <div class="messages-area"></div>
+                        <div id="messages-header">
+                                <div class='user_img_container'><img alt='PIC' class = 'user_img' id="chatimg"></div>
+                                <div class='user_name'> <p class='user_name_text' id="chatuser"></p> </div>
+                                <div class='online-state'></div>
+                        </div>
+                        <div id="messages-area">
+                            
+                        </div>
                         <div class="message-send-div">
                             <div id="message-input-container"><input type="text" name="message-input" id="message-input"></div>
                             <input type ="button" value="SEND" name="msg-send-btn" id="msg-send-btn">
