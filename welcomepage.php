@@ -1,3 +1,13 @@
+<?php
+    include "config.php";
+    session_start();
+    if(isset($_SESSION['username'])){
+        $username = $_SESSION['username'];
+    } else{
+        $username = "NOPE";
+    }
+?>
+
 <html>  
     <head>
         <title>Welcome</title>
@@ -10,6 +20,12 @@
 
     <body>
         <div class="container">
+            <div class="welcome-user">
+                    <div id="dpDivWelcome">
+                        <img alt="Profile Picture" id="dpWelcome">
+                        <p id="welcome-text"></p>
+                    </div>
+            </div>
             <div id="popupform">
                     <div id="pfcontent">
                         <div id="options">
@@ -92,13 +108,43 @@
                         </div>
                     </div>
                     <div class="users-list">
-                        
+                    <?php    
+                                           
+                            $sql = "SELECT profilepic, username  FROM shreyas_users";
+                            $result = mysqli_query($conn, $sql);
+                            if(mysqli_num_rows($result)>0){
+                                while($row = mysqli_fetch_assoc($result)) {
+                                $pp = $row['profilepic'];
+                                $uname = $row['username'];
+                                if($uname==$username){
+                                    continue;
+                                }
+                                $output = "<div class='user_div' onclick='chatwith(`".$uname."`)' id='".$uname."'>
+                                <div class='user_img_container'> <img src='".$pp."' alt='PIC' class = 'user_img'> </div>
+                                <div class='user_name'> <p class='user_name_text'>".$uname." </p> </div>
+                                            
+                                    </div>";
+
+                            
+                                echo $output;
+                                }
+                               
+                            } else{
+                                $pp = "OMG";
+                            }
+                        ?>
+                    
                     </div>
                 </div>
 
 
                 <div class="chat-area">
-
+                        <div class="messages-header"></div>
+                        <div class="messages-area"></div>
+                        <div class="message-send-div">
+                            <div id="message-input-container"><input type="text" name="message-input" id="message-input"></div>
+                            <input type ="button" value="SEND" name="msg-send-btn" id="msg-send-btn">
+                        </div>
                 </div>
             </div>
         </div>

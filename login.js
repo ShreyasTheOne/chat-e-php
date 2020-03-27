@@ -47,7 +47,7 @@ function loginUser(username, password){
                     timeout: 1000
                 });
                 setTimeout(function(){
-                    location.replace("welcome.html");}, 1000);
+                    location.replace("welcomepage.php");}, 1000);
                 
             } else if (response=="usernotfound"){
                 iziToast.error({

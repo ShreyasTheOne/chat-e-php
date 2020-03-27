@@ -1,8 +1,26 @@
 var firstFormSel = true;
 var dpsrc="";
+var username;
 var es=0, ps=0, ec=0, pc=0;
+
+
 $("document").ready(function(){
-   listUsers();
+    $.ajax({
+        url: 'welcome.php', type: 'post',
+
+        data: {
+            'check_login':1
+        },
+        success: function(response){
+            if(response=="fail"){
+                location.replace("login.html");
+            } else {
+                username = response;
+            }
+        }
+    });
+   
+    listUsers();
 
     $("#logOff").on('click', function(){
         iziToast.show({
@@ -173,8 +191,10 @@ function listUsers(){
                     message: 'Something went wrong.',
                 });
             } else{
+                $("#welcome-text").html("Welcome, " + username+ "!");
                 var dpsrc=response;
                 updateDP(dpsrc);
+               
             }
         }
     });
@@ -510,5 +530,9 @@ function resetPassword(cp, np){
 
 function updateDP(newurl){
     $("#dp").attr('src', newurl);
+    $("#dpWelcome").attr('src', newurl);
 }
 
+function chatwith(user){
+    alert(user);
+}

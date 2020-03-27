@@ -1,6 +1,19 @@
 <?php
     include "config.php";
 
+    if(isset($_POST['check_login'])){
+        session_start();
+        if(isset($_SESSION['username'])){
+            echo $_SESSION['username'];
+            exit();
+        } else{
+            echo "fail";
+            session_destroy();
+            exit();
+        }
+    }
+
+
     if(isset($_GET["logout"])){
         session_start();
         $username = $_SESSION["username"];
