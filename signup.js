@@ -86,7 +86,7 @@ $('document').ready(function(){
 
             success: function(response){
                 if(response=="invalid phone"){
-                    document.getElementById("phone_error").innerHTML = "Phone number must be exactly 10 digits.";
+                    document.getElementById("phone_error").innerHTML = "Invalid phone number.";
                     ps = 0;
                 } else if(response == "taken"){
                     document.getElementById("phone_error").innerHTML = "Account already exists with this phone number.";

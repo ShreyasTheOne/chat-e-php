@@ -45,7 +45,7 @@
     if(isset($_POST['p_check'])){
         $phone = $_POST['phone'];
 
-        if(!preg_match('/^[\d]{10}$/', $phone)){
+        if(!preg_match('/^[123456789][\d]{9}$/', $phone)){
             echo "invalid phone";
             exit();
         }

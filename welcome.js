@@ -295,7 +295,7 @@ function setupFormOne(){
                             position: 'topCenter',
                             backgroundColor: '#eb4034',
                             title: 'Error',
-                            message: 'Phone number must be exactly 10 digits.',
+                            message: 'Phone number invalid.',
                         });
                         ps = 0;
                         pc=1;
@@ -396,6 +396,7 @@ function updateEmail(){
                       message: 'Email updated successfully.',
                       timeout: 3000
                   });
+                  document.getElementById("emailin").value="";
                  hideForm();
               } else {
                   iziToast.error({
@@ -429,6 +430,7 @@ function updatePhone(){
                       timeout: 3000
                   });
                   hideForm();
+                  document.getElementById("phonein").value="";
               } else {
                   iziToast.error({
                       title: 'Bummer',
