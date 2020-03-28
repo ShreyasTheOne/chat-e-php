@@ -552,6 +552,8 @@ function chatwith(user, pic){
     document.getElementById("welcome-user").style.display="none";
     document.getElementById("messages-header").style.display="flex";
     document.getElementById("message-input").style.display="block";
+    document.getElementById("chatuser").style.display="block";
+    document.getElementById("chatimg").style.display="block";
     document.getElementById("message-input-container").style.display="flex";
     document.getElementById("msg-send-btn").style.display="block";
     document.getElementById("chatuser").innerHTML=user;

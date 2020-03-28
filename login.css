@@ -20,17 +20,20 @@ body{
 
 .content{
   width: 30%;
-  height: 80%;
-  box-shadow: inset 0px 0px 10px #888888;
+  height: 60%;
+  box-shadow: inset 0px 0px 30px #acabab;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
 }
-.signup{
+
+.login{
   align-self: center;
   font-size: 30px;
   font-family: 'Nanum Gothic', sans-serif;
+  margin-bottom: 20px;
+  margin-top: 5px ;
 }
 
 #apptitle{
@@ -51,7 +54,7 @@ body{
 }
 
 label{
-  font-size: 24px;
+  font-size: 15px;
   font-family: 'Nanum Gothic', sans-serif;
 }
 
@@ -89,14 +92,15 @@ label{
   opacity: 0.6; /* Firefox */
 }
 
-.suginput{
+.surinput{
   margin: 10px;
+  font-size: 10px;
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: center;
 }
 
-#submitBtn{
+#loginBtn{
   margin: 20px;
   width: 150px;
   height: 40px;

@@ -20,7 +20,7 @@ $('document').ready(function(){
                     document.getElementById("uname_error").innerHTML = "Username taken.";
                     us=0;
                 } else if (response=='not_taken'){
-                    document.getElementById("uname_error").innerHTML = "Username available.";
+                    document.getElementById("uname_error").innerHTML = "";
                     us=1;
                 } else if (response=="length_error"){
                     document.getElementById("uname_error").innerHTML = "Username must be 6-10 characters long.";

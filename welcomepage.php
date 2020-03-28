@@ -139,15 +139,15 @@
 
 
                 <div class="chat-area">
-                        <div id="messages-header">
+                        <div id="messages-header" class="yellowFront">
                                 <div class='user_img_container'><img alt='PIC' class = 'user_img' id="chatimg"></div>
                                 <div class='user_name'> <p class='user_name_text' id="chatuser"></p> </div>
                                 <div id='onlinestate'></div>
                         </div>
-                        <div id="messages-area">
+                        <div id="messages-area" class="yellowFront">
                             
                         </div>
-                        <div class="message-send-div">
+                        <div class="message-send-div yellowFront">
                             <div id="message-input-container"><input type="text" name="message-input" id="message-input"></div>
                             <input type ="button" value="SEND" name="msg-send-btn" id="msg-send-btn">
                         </div>

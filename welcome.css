@@ -6,6 +6,10 @@ body{
     background-color: #91c1ff;
 }
 
+.yellowFront{
+    background-color: #ffd769;
+}
+
 #welcome-user{
     position: absolute;
     display: flex;
@@ -211,12 +215,12 @@ body{
 
 #messages-header{
     
-    display: none;
+    display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     grid-row: 1;
-    background-color: #e6e6fa;
+    /* background-color: #e6e6fa; */
     /* border-bottom: 1px solid black; */
 }
 
@@ -232,9 +236,15 @@ body{
 #chatuser{
     margin-left: 15px;
     font-size: 16px;
+    display: none;
+}
+
+#chatimg{
+    display: none;
 }
 #messages-area{
     grid-row: 2;
+    
     /* border-bottom: 1px solid black; */
     display: flex;
     flex-direction: column;
@@ -281,9 +291,11 @@ body{
 #msg-send-btn{
     width: 60px;
     height: 35px;
-    border: 1px solid #000000;
+    
     border-radius: 10px;
     font-size: 15px;
+    color: #2c363f;
+    font-weight: 1200;
     margin-right: 30px;
     background-color: #91c1ff;
     display: none;
@@ -294,12 +306,12 @@ body{
     width: fit-content;
     height: fit-content;
     max-width: 500px;
-    background-color: #ffa052;
-    box-shadow: 5px 5px 20px #ff5476 inset;
+    background-color: #cec2ff;
+    box-shadow: 5px 5px 20px #cf8ba9 inset;
     padding: 0px 20px;
     border: none;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -312,14 +324,14 @@ body{
 }
 
 .senderm{
-    border-top-left-radius: 10px;
+    border-top-left-radius: 20px;
     border-top-right-radius: 0px;
     align-self: flex-end;
 }
 
 .receiverm{
     border-top-left-radius: 0px;
-    border-top-right-radius: 10px;
+    border-top-right-radius: 20px;
     align-self: flex-start;
 }
 

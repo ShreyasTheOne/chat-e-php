@@ -21,7 +21,7 @@ body{
 .content{
   width: 30%;
   height: 80%;
-  box-shadow: inset 0px 0px 10px #888888;
+  box-shadow: inset 0px 0px 30px #acabab;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,6 +53,9 @@ body{
 label{
   font-size: 24px;
   font-family: 'Nanum Gothic', sans-serif;
+}
+#male{
+    margin-right: 15px;
 }
 
 #sex{

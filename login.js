@@ -8,14 +8,16 @@ $("document").ready(function(){
         if(username===""||username==null){
             iziToast.error({
                 title: 'Error',
-                position: 'topRight',
+                position: 'topCenter',
+                backgroundColor: '#eb4034',
                 message: 'Username field cannot be empty',
             });
 
         } else if(password===""||password==null){
             iziToast.error({
                 title: 'Error',
-                position: 'topRight',
+                position: 'topCenter',
+                backgroundColor: '#eb4034',
                 message: 'Password field cannot be empty',
             });
 
@@ -24,6 +26,63 @@ $("document").ready(function(){
             loginUser(username, password);
         }
     });
+
+    $('#uname').keyup(function(event){
+        if(event.keyCode==13){
+            var username = $("#uname").val();
+            var password = $("#psswd").val();
+
+            if(username===""||username==null){
+                iziToast.error({
+                    title: 'Error',
+                    position: 'topCenter',
+                backgroundColor: '#eb4034',
+                    message: 'Username field cannot be empty',
+                });
+
+            } else if(password===""||password==null){
+                iziToast.error({
+                    title: 'Error',
+                    position: 'topRight',
+                    backgroundColor: '#eb4034',
+                    message: 'Password field cannot be empty',
+                });
+
+                return;
+            } else {
+                loginUser(username, password);
+            }
+        }
+    });
+
+    $('#psswd').keyup(function(event){
+        if(event.keyCode==13){
+            var username = $("#uname").val();
+            var password = $("#psswd").val();
+
+            if(username===""||username==null){
+                iziToast.error({
+                    title: 'Error',
+                    position: 'topCenter',
+                    backgroundColor: '#eb4034',
+                    message: 'Username field cannot be empty',
+                });
+
+            } else if(password===""||password==null){
+                iziToast.error({
+                    title: 'Error',
+                    position: 'topCenter',
+                    backgroundColor: '#eb4034',
+                    message: 'Password field cannot be empty',
+                });
+
+                return;
+            } else {
+                loginUser(username, password);
+            }
+        }
+    });
+    
 
     
 });
@@ -53,12 +112,14 @@ function loginUser(username, password){
                 iziToast.error({
                     title: 'Error',
                     position: 'topCenter',
+                    backgroundColor: '#eb4034',
                     message: 'Bad Credentials',
                 });
             } else if(response=="unabletologin"){
                 iziToast.error({
                     title: 'Error',
                     position: 'topCenter',
+                    backgroundColor: '#eb4034',
                     message: 'Something went wrong',
                 });
             }

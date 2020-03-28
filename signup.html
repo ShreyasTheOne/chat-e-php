@@ -1,47 +1,62 @@
 <html>
     <head>
         <title>Sign Up</title>
+        <link href="signup.css" rel="stylesheet">
         <link rel="stylesheet" href="iziToast.min.css">
         <script src="iziToast.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="signup.js"></script>
+
     </head>
 
     <body>
-        <h1>Sign Up</h1>
-        <br>
-        <form name="signupForm" id ="signupForm" autocomplete="off"> 
-        <!-- use ajax for submission, remove method=post-->
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username">
-            <p id="uname_error" class="error_message"></p> 
-            
+        <div class="container">
+           
+            <div class="content backgroundIn">
+                <form name="signupForm" id ="signupForm" autocomplete="off"></form>
+                    <div id="apptitle">Chat-e-php</div>
+                    <div class="signup">
+                        Sign Up
+                    </div>
+                    <div class="suinput">
+                        <input class="suintext backgroundIn" type="text" name="username" id="username" placeholder="Username" autocomplete="off">
+                        <p id="uname_error" class="error_message"></p> 
+                    </div>
 
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password"><br><br>
+                    <div class="suinput">
+                        <input class="suintext backgroundIn" type="password" name="password" id="password" placeholder="Password">
+                    </div>
 
-            <label for="cnfpassword">Confirm Password:</label>
-            <input type="password" name="cnfpassword" id="cnfpassword"><br><br>
-            <p id="cnfp_error" class="error_message"></p> 
+                    <div class="suinput backgroundIn">
+                        <input class="suintext backgroundIn" type="password" name="cnfpassword" id="cnfpassword" placeholder="Confirm Password">
+                        <p id="cnfp_error" class="error_message"></p> 
+                    </div>
 
-             Sex: 
-            <input type="radio" id="male" name="sex" value="male">
-            <label for="male">Male</label>
-            <input type="radio" id="female" name="sex" value="female">
-            <label for="female">Female</label><br><br> 
+                    <div class="suginput">
+                        <div id="sex">Sex -</div>
+                        <div id="radio">
+                            <label for="sex">Male</label>
+                            <input type="radio" id="male" name="sex" value="male">
+                            <label for="sex">Female</label>
+                            <input type="radio" id="female" name="sex" value="female">
+                        </div>
+                    </div>
 
-            <label for="email">Email: </label>
-            <input type="text" name="email" id="email"><br><br>
-            <p id="email_error" class="error_message"></p> 
+                    <div class="suinput">
+                        <input class="suintext backgroundIn" type="text" name="email" id="email" placeholder="Email" autocomplete="off">
+                        <p id="email_error" class="error_message"></p>
+                    </div>
 
-            <label for="phone">Phone number (10-Digit):</label>
-            <input type="text" name="phone" id="phone"><br>
-            <p id="phone_error" class="error_message"></p> 
+                    <div class="suinput">
+                        <input class="suintext backgroundIn" type="text" name="phone" id="phone" placeholder="Mobile Number" autocomplete="off"><br>
+                        <p id="phone_error" class="error_message"></p> 
+                    </div>
 
-            <br><input type="button" name="submit" id="submitBtn" value="Sign Up">
-        </form>
+                    <input type="button" name="submit" id="submitBtn" value="SIGN UP">
+                    <div id="already">Already have an account? <a href="login.html">Log in</a></div>
+                </form>    
+            </div>
+        </div>
 
-        <br>Already have an account? <a href="login.html">Log in</a>
-        
     </body>
-</html> 
+</html>
