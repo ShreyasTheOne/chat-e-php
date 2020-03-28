@@ -547,6 +547,7 @@ function updateDP(newurl){
 }
 
 function chatwith(user, pic){
+    firstTime = true;
     // alert(user);
     document.getElementById("welcome-user").style.display="none";
     document.getElementById("messages-header").style.display="flex";
@@ -589,7 +590,7 @@ function showConversation(sender, receiver){
     showConvRepeated(sender, receiver);
     
     
-    setInterval(function(){ showConvRepeated(sender, receiver);}, 1000);
+    setInterval(function(){ showConvRepeated(sender, receiver);}, 100);
     
 }
 
@@ -633,7 +634,18 @@ function setMessages(mes){
         curScrolHeight = container.scrollHeight;
         firstTime = false;     
       } else if(curScrolHeight < container.scrollHeight){
-          container.scrollTop = container.scrollHeight;
+          if(container.scrollTop + container.clientHeight < curScrolHeight){
+              
+            iziToast.info({
+                title: 'Hey!',
+                message: 'You have a new message.',
+                transitionIn: 'bounceInLeft',
+                position: 'bottomRight'
+            });
+          }else{
+            container.scrollTop = container.scrollHeight;
+            
+          } 
           curScrolHeight = container.scrollHeight;
       }
 }
