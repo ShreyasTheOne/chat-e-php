@@ -10,6 +10,9 @@
         $results = mysqli_query($conn, $sql);
         if(mysqli_num_rows($results)==1){
 
+            
+            if($_POST['rememberme'] === "true"){
+
                 $cookiegen = sha1("I am ".$use."-locked".mt_rand(10, 1000).mt_rand(10, 1000));
 
                 $sql = "UPDATE shreyas_users SET cookie='$cookiegen' where username='$use'";
@@ -20,6 +23,7 @@
                     echo "unabletologin";
                     exit();
                 }
+            }
 
                 $sql = "UPDATE shreyas_users SET loggedin=1 where username='$use'";
 
