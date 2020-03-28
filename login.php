@@ -3,7 +3,7 @@
 
     if(isset($_POST['login'])){
         $username = trim($_POST['username']);
-        $password = trim($_POST['password']);
+        $password = sha1(trim($_POST['password']));
 
         $sql = ("SELECT * FROM shreyas_users where BINARY username='$username' and BINARY password='$password'");
         $results = mysqli_query($conn, $sql);

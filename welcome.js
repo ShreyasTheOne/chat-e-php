@@ -1,6 +1,9 @@
 var firstFormSel = true;
+var ytb = true;
+var firstTime = true;
+var curScrolHeight;
 var dpsrc="";
-var username;
+var username, otherend, saplingshown;
 var es=0, ps=0, ec=0, pc=0;
 
 
@@ -165,6 +168,16 @@ $("document").ready(function(){
                 });
             }
         }
+    });
+
+    $('#message-input').keyup(function(event){
+        if(event.keyCode==13){
+            sendMessage();
+        }
+    });
+
+    $('#msg-send-btn').on('click', function(){
+        sendMessage();
     });
 });
 
@@ -547,11 +560,40 @@ function chatwith(user, pic){
 }
 
 function showConversation(sender, receiver){
+    otherend = receiver;
+    $.ajax({
+        url: 'chat.php', type: 'post',
+
+        data: {
+            'check_online': 1,
+            'receiver': receiver
+        },
+        success: function(response){
+            if(response=="usernotfound"){
+                iziToast.error({
+                    position: 'topCenter',
+                    backgroundColor: '#eb4034',
+                    title: 'Error',
+                    message: 'User status unknown.',
+                });
+            } else if (response==0){
+                document.getElementById("onlinestate").style.backgroundColor="#ff1616";
+            } else if(response==1){
+                document.getElementById("onlinestate").style.backgroundColor="lawngreen";
+            }
+        }
+    });
+
+    //clearInterval(ongoing);
+    $("#messages-area").empty();
     showConvRepeated(sender, receiver);
-   setInterval(function(){ showConvRepeated(sender, receiver);}, 1000);
+    
+    
+    setInterval(function(){ showConvRepeated(sender, receiver);}, 1000);
+    
 }
 
-function showConvRepeated(sender, receiver){
+function showConvRepeated(sender){
     //alert(sender+ " " + receiver);
     $.ajax({
         url: 'chat.php', type: 'post',
@@ -559,38 +601,52 @@ function showConvRepeated(sender, receiver){
         data: {
             'get_chat': 1,
             'sender': sender,
-            'receiver': receiver
+            'receiver': otherend
         },
         success: function(response){
             if(response=="yettobegin"){
-                alert("yettobegin");
+               showSapling();
+              //alert(response)
             }else{
-            var mes = response.split("¬");
+                var mes = response.split("¬");
                 // alert(mes);
+                if(saplingshown){hideSapling();}
                 setMessages(mes);
+
             }
         }
     });
 }
 
 function setMessages(mes){
+
     let meslength = mes.length;
     $("#messages-area").empty();
     for(let i=0; i<meslength-1; i++){
         // alert(mes[i])
         pushMessage(mes[i]);
     }
+    var container = document.getElementById("messages-area");
+
+    if(firstTime) {
+        container.scrollTop = container.scrollHeight;
+        curScrolHeight = container.scrollHeight;
+        firstTime = false;     
+      } else if(curScrolHeight < container.scrollHeight){
+          container.scrollTop = container.scrollHeight;
+          curScrolHeight = container.scrollHeight;
+      }
 }
 
 function pushMessage(str){
     
-
     var arr = str.split('±');
     //alert(arr)
 
     var text, setter;
         text = arr[0];
         setter = arr[1];  
+    var mid = arr[2];
     
     var mdiv = document.createElement("div");
 
@@ -604,6 +660,56 @@ function pushMessage(str){
         mdiv.classList.add("receiverm");
     }
     
-    document.getElementById("messages-area").appendChild(mdiv);
+    //mdiv.setAttribute("id", setter+mid);
+    document.getElementById("messages-area").appendChild(mdiv); 
     
+}
+
+function sendMessage(){
+    var msg = $("#message-input").val();
+    document.getElementById("message-input").value = "Johnny Bravo";
+    // alert($msg);
+
+    $.ajax({
+        url: 'chat.php', type: 'post',
+
+        data:{
+            'sendmsg': 1,
+            'message': msg,
+            'sender' : username,
+            'receiver' : otherend
+        },
+
+        success: function(response){
+            if(response=="f"){
+                iziToast.error({
+                    position: 'topCenter',
+                    backgroundColor: '#eb4034',
+                    title: 'Error',
+                    message: 'Unable to send message.',
+                });
+            } 
+        }
+    });
+}   
+
+function showSapling(){
+    
+    document.getElementById("welcome-user").style.display="flex";
+    $("#dpDivWelcome").css({
+        width: 600
+    });
+    $("#dpWelcome").attr('src', 'pictures/sapling.png');
+    $("#dpWelcome").attr('height', '200px');
+    $("#welcome-text").css({
+        fontSize: 20
+    });
+    $("#welcome-text").html("Send a message to start the conversation!");
+    saplingshown = true;
+    
+}
+
+function hideSapling(){
+    document.getElementById("welcome-user").style.display="none";
+    saplingshown = false;
 }

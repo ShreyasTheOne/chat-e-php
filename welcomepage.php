@@ -26,6 +26,7 @@
                         <p id="welcome-text"></p>
                     </div>
             </div>
+            
             <div id="popupform">
                     <div id="pfcontent">
                         <div id="options">
@@ -141,7 +142,7 @@
                         <div id="messages-header">
                                 <div class='user_img_container'><img alt='PIC' class = 'user_img' id="chatimg"></div>
                                 <div class='user_name'> <p class='user_name_text' id="chatuser"></p> </div>
-                                <div class='online-state'></div>
+                                <div id='onlinestate'></div>
                         </div>
                         <div id="messages-area">
                             

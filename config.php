@@ -1,5 +1,9 @@
 <?php
-    
+    // $dbusername = "shreyas";
+    // $dbpassword = "\$t0reMyData";
+    // $dbname = "phpasgmt";
+    // $servername = "localhost";
+
     $dbusername = "first_year";
     $dbpassword = "first_year";
     $dbname = "first_year";

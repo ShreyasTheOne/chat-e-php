@@ -31,14 +31,7 @@
         $username = $_SESSION['username'];
 
         $sql = "SELECT * FROM shreyas_users where username='$username'";
-        //$sql = "INSERT INTO shreyas_users (username, password, email, phone, sex) values ('te', 'te', 'te', 1111111111, 'te')";
         $request = mysqli_query($conn, $sql);
-
-        // if(mysqli_query($conn, $sql)){
-        //     echo 'works';
-        // } else{
-        //     echo 'smthww';
-        // }$request
 
         if(! $request ) {
             echo 'dbconf';
@@ -49,7 +42,7 @@
                     echo $sout;
                  }
 
-                //echo 'blej';
+            
             }else{
                 echo 'smthww';
             }

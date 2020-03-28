@@ -64,7 +64,7 @@
     if(isset($_POST["total_check"])){
         
         $username = $_POST["username"];
-        $password = $_POST["password"];
+        $password = sha1(trim($_POST["password"]));
         $sex = $_POST["sex"];
         $email = $_POST["email"];
         $phone = $_POST["phone"];

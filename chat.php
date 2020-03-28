@@ -55,9 +55,9 @@ if(isset($_POST['get_chat'])){
         $num = mysqli_num_rows($result);
         while($row=mysqli_fetch_assoc($result)){
             if($row['sender']==$sid){
-                $output = $row['message']."±".$sender; 
+                $output = $row['message']."±".$sender."±".$row['mid']; 
             } else {
-                $output = $row['message']."±".$receiver;
+                $output = $row['message']."±".$receiver."±".$row['mid'];
             }
 
             
@@ -117,6 +117,77 @@ function check($sid, $rid){
        return $x;
     }
 
-    
 }
+
+if(isset($_POST["check_online"])){
+    $receiver = $_POST['receiver'];
+    
+    $sql = "SELECT loggedin FROM shreyas_users where username = '$receiver'";
+
+    $request = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($request)==1){
+        
+        while($row = mysqli_fetch_assoc($request)){
+            echo $row['loggedin'];
+            exit();
+        }
+    } else{
+        echo "usernotfound";
+        exit();
+    }
+}
+
+if(isset($_POST['sendmsg'])){
+    $msg = $_POST['message'];
+    $sender = $_POST['sender'];
+    $receiver = $_POST['receiver'];
+
+    $sql = "SELECT id from shreyas_users where username = '$sender'";
+    $request = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($request)==1){
+        while($row = mysqli_fetch_assoc($request)){
+            $sid = $row['id'];
+        }
+    } else{
+        echo "notfound";
+        exit();
+    }
+
+    $sql = "SELECT id from shreyas_users where username = '$receiver'";
+    $request = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($request)==1){
+        while($row = mysqli_fetch_assoc($request)){
+            $rid = $row['id'];
+        }
+    } else{
+        echo "notfound";
+        exit();
+    }
+
+
+    if($sid<$rid){
+        $l = $sid;
+        $g = $rid;
+    } else{
+        $l = $rid;
+        $g = $sid;
+    }
+    
+    $name = "shreyas_convid_".$l."_".$g;
+    // $name = "convid_1_2";
+
+    $sql = "INSERT INTO $name (message, sender, receiver) VALUES ('$msg', '$sid', '$rid')";
+
+    if(mysqli_query($conn, $sql)){
+        echo "s";
+        exit();
+    }else{
+        echo"f";
+        exit();
+    }
+}
+
 ?>
