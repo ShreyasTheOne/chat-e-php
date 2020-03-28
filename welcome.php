@@ -17,12 +17,13 @@
     if(isset($_GET["logout"])){
         session_start();
         $username = $_SESSION["username"];
-        
-        $sql = "UPDATE shreyas_users SET loggedin=0 where username='$username'";
+        $use = htmlspecialchars($username, ENT_QUOTES);
+        $sql = "UPDATE shreyas_users SET loggedin=0 where username='$use'";
 
         if(mysqli_query($conn, $sql)){
+            setcookie("user_hash", "", 1, "/");
             session_destroy();
-            header("Location: login.html");
+            header("Location: loginpage.php");
         } else {
             echo mysqli_error($conn);
             exit();
@@ -33,8 +34,9 @@
     if(isset($_POST['get_dp'])){
         session_start();
         $username = $_SESSION['username'];
+        $use = htmlspecialchars($username, ENT_QUOTES);
         
-        $sql = "SELECT profilepic FROM shreyas_users where username='$username'";
+        $sql = "SELECT profilepic FROM shreyas_users where username='$use'";
 
         $request = mysqli_query($conn, $sql);
         if(!$request){

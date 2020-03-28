@@ -8,20 +8,7 @@ var es=0, ps=0, ec=0, pc=0;
 
 
 $("document").ready(function(){
-    $.ajax({
-        url: 'welcome.php', type: 'post',
-
-        data: {
-            'check_login':1
-        },
-        success: function(response){
-            if(response=="fail"){
-                location.replace("login.html");
-            } else {
-                username = response;
-            }
-        }
-    });
+    checkLoggedIn();
    
     welcomeUser();
 
@@ -587,7 +574,7 @@ function showConversation(sender, receiver){
         }
     });
 
-    //clearInterval(ongoing);
+    
     $("#messages-area").empty();
     showConvRepeated(sender, receiver);
     
@@ -598,6 +585,7 @@ function showConversation(sender, receiver){
 
 function showConvRepeated(sender){
     //alert(sender+ " " + receiver);
+    checkLoggedIn();
     $.ajax({
         url: 'chat.php', type: 'post',
 
@@ -681,7 +669,7 @@ function pushMessage(str){
 
 function sendMessage(){
     var msg = $("#message-input").val();
-    document.getElementById("message-input").value = "Johnny Bravo";
+    document.getElementById("message-input").value = "";
     // alert($msg);
 
     $.ajax({
@@ -713,7 +701,7 @@ function showSapling(){
     $("#dpDivWelcome").css({
         width: 600
     });
-    $("#dpWelcome").attr('src', 'pictures/sapling.png');
+    $("#dpWelcome").attr('src', 'pictures/sap.png');
     $("#dpWelcome").attr('height', '200px');
     $("#welcome-text").css({
         fontSize: 20
@@ -726,4 +714,21 @@ function showSapling(){
 function hideSapling(){
     document.getElementById("welcome-user").style.display="none";
     saplingshown = false;
+}
+
+function checkLoggedIn(){
+    $.ajax({
+        url: 'welcome.php', type: 'post',
+
+        data: {
+            'check_login':1
+        },
+        success: function(response){
+            if(response=="fail"){
+                location.replace("loginpage.php");
+            } else {
+                username = response;
+            }
+        }
+    });
 }

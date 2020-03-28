@@ -4,12 +4,24 @@
     if(isset($_POST['login'])){
         $username = trim($_POST['username']);
         $password = sha1(trim($_POST['password']));
-
-        $sql = ("SELECT * FROM shreyas_users where BINARY username='$username' and BINARY password='$password'");
+        
+        $use = htmlspecialchars($username, ENT_QUOTES);
+        $sql = ("SELECT * FROM shreyas_users where BINARY username='$use' and BINARY password='$password'");
         $results = mysqli_query($conn, $sql);
         if(mysqli_num_rows($results)==1){
-            
-                $sql = "UPDATE shreyas_users SET loggedin=1 where username='$username'";
+
+                $cookiegen = sha1("I am ".$use."-locked".mt_rand(10, 1000).mt_rand(10, 1000));
+
+                $sql = "UPDATE shreyas_users SET cookie='$cookiegen' where username='$use'";
+                if(mysqli_query($conn, $sql)){
+                    //set cookie
+                    setcookie("user_hash", $cookiegen, time() + (86400 * 30), "/");
+                } else {
+                    echo "unabletologin";
+                    exit();
+                }
+
+                $sql = "UPDATE shreyas_users SET loggedin=1 where username='$use'";
 
                 if(mysqli_query($conn, $sql)){
                     session_start();
@@ -25,6 +37,7 @@
             echo "usernotfound";
             exit();
         }
+
     }
 
 

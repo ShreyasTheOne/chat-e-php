@@ -116,7 +116,7 @@
                                 while($row = mysqli_fetch_assoc($result)) {
                                 $pp = $row['profilepic'];
                                 $uname = $row['username'];
-                                if($uname==$username){
+                                if($uname==htmlspecialchars($username, ENT_QUOTES)){
                                     continue;
                                 }
                                 $output = "<div class='user_div' onclick='chatwith(`".$uname."` , `".$pp."` )' id='".$uname."'>

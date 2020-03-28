@@ -1,3 +1,22 @@
+<?php
+    include "config.php";
+
+    if(isset($_COOKIE["user_hash"])){
+        $cookie = $_COOKIE["user_hash"];
+        $sql = "SELECT username FROM shreyas_users where cookie = '$cookie'";
+
+        $request = mysqli_query($conn, $sql);
+        if(mysqli_num_rows($request)==1){
+            while($row = mysqli_fetch_assoc($request)){
+                    session_start();
+                    $_SESSION["username"] = htmlspecialchars_decode($row['username'], ENT_QUOTES);
+                    header("Location: welcomepage.php");
+            }
+        }
+    }
+?>
+
+
 <html>
     <head>
         <title>Sign Up</title>
@@ -53,7 +72,7 @@
                     </div>
 
                     <input type="button" name="submit" id="submitBtn" value="SIGN UP">
-                    <div id="already">Already have an account? <a href="login.html">Log in</a></div>
+                    <div id="already">Already have an account? <a href="loginpage.php">Log in</a></div>
                 </form>    
             </div>
         </div>

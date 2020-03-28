@@ -20,8 +20,8 @@ body{
 
 .content{
   width: 30%;
-  height: 60%;
-  box-shadow: inset 0px 0px 30px #acabab;
+  height: 63%;
+  box-shadow: inset 0px 0px 15px #acabab;
   display: flex;
   flex-direction: column;
   align-items: center;

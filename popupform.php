@@ -4,13 +4,15 @@
     if(isset($_POST['reset_p'])){
         session_start();
         $username = $_SESSION['username'];
-        $password = $_POST['current_pass'];
-        $sql = "SELECT * FROM shreyas_users where BINARY username='$username' and BINARY password='$password'";
+        $password = sha1(trim($_POST['current_pass']));
+
+        $use = htmlspecialchars($username, ENT_QUOTES);
+        $sql = "SELECT * FROM shreyas_users where BINARY username='$use' and BINARY password='$password'";
 
         $results = mysqli_query($conn, $sql);
         if(mysqli_num_rows($results)==1){
-            $password = $_POST['new_pass'];
-            $sql = "UPDATE shreyas_users SET password='$password' where username='$username'";
+            $password = sha1(trim($_POST['new_pass']));
+            $sql = "UPDATE shreyas_users SET password='$password' where username='$use'";
 
             if(mysqli_query($conn, $sql)){
                 echo 'success';
@@ -29,8 +31,9 @@
     if(isset($_POST['rpi'])){
         session_start();
         $username = $_SESSION['username'];
+        $use = htmlspecialchars($username, ENT_QUOTES);
 
-        $sql = "SELECT * FROM shreyas_users where username='$username'";
+        $sql = "SELECT * FROM shreyas_users where username='$use'";
         $request = mysqli_query($conn, $sql);
 
         if(! $request ) {
@@ -38,6 +41,7 @@
         }else {
             if(mysqli_num_rows($request)==1){
                 while($row = mysqli_fetch_assoc($request)) {
+                    $eee = htmlspecialchars_decode($row['email'], ENT_QUOTES);
                     $sout = $row['email'].'^'.$row['phone'];
                     echo $sout;
                  }
@@ -55,10 +59,15 @@
         $username = $_SESSION['username'];
         $val = $_POST['value'];
         $varname = $_POST['varname'];
+
+        $use = htmlspecialchars($username, ENT_QUOTES);
+
         if($varname == 'email'){
-        $sql = "UPDATE shreyas_users SET $varname='$val' where username='$username'"; }
+        
+        $val = htmlspecialchars($val, ENT_QUOTES);
+        $sql = "UPDATE shreyas_users SET $varname='$val' where username='$use'"; }
         else {
-            $sql = "UPDATE shreyas_users SET $varname=$val where username='$username'";
+            $sql = "UPDATE shreyas_users SET $varname='$val' where username='$use'";
         }
 
         if(mysqli_query($conn, $sql)){
@@ -75,11 +84,13 @@
     if($_FILES["file"]["name"] != ''){
         session_start();
         $username = $_SESSION["username"];
+        $use = htmlspecialchars($username, ENT_QUOTES);
+
         $test = explode(".", $_FILES["file"]["name"]);
         $extension = end($test);
-        $name = 'pictures/'.$username.".".$extension;
+        $name = 'pictures/'.$use.".".$extension;
 
-        $sql = "SELECT profilepic FROM shreyas_users where username='$username'";
+        $sql = "SELECT profilepic FROM shreyas_users where username='$use'";
 
         $request = mysqli_query($conn, $sql);
         if(!$request){
@@ -88,7 +99,7 @@
         } else {
             if(mysqli_num_rows($request)==1){
                 while($row = mysqli_fetch_assoc($request)) {
-                    if($row['profilepic']=='pictures/defaultdp.png'){
+                    if($row['profilepic']=='pictures/def.png'){
                        
                     } else {
                         unlink($row['profilepic']);
@@ -103,7 +114,7 @@
             }
         }
         
-        $sql = "UPDATE shreyas_users SET profilepic='$name' where username='$username'";
+        $sql = "UPDATE shreyas_users SET profilepic='$name' where username='$use'";
         if(mysqli_query($conn, $sql)){
             echo  $name;
         } else{
@@ -112,7 +123,5 @@
         
         exit();
    }   
-
-
 
 ?>

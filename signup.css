@@ -20,8 +20,8 @@ body{
 
 .content{
   width: 30%;
-  height: 80%;
-  box-shadow: inset 0px 0px 30px #acabab;
+  height: 85%;
+  box-shadow: inset 0px 0px 15px #acabab;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,6 +115,6 @@ label{
 
 #already{
   font-family: 'Nanum Gothic', sans-serif;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 

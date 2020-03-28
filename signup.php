@@ -3,14 +3,15 @@
     include "config.php";
 
     if(isset($_POST["u_check"])){
-        $username = $_POST["username"];
+        $username = $_POST['username'];
         if(strlen(trim($username))<6||strlen(trim($username))>10){
             //LENGTH ERROR
             echo "length_error";
             exit();
         }
-
-        $sql = "SELECT * FROM shreyas_users WHERE username='$username'";
+        $use = htmlspecialchars($_POST["username"], ENT_QUOTES);
+                    
+        $sql = "SELECT * FROM shreyas_users WHERE username='$use'";
         $results = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($results) > 0) {
@@ -29,8 +30,8 @@
             echo "invalid email"; 
             exit();
         }
-
-        $sql = "SELECT * FROM shreyas_users WHERE email='$email'";
+        $em = htmlspecialchars($_POST["email"], ENT_QUOTES);
+        $sql = "SELECT * FROM shreyas_users WHERE email='$em'";
         $results = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($results) > 0) {
@@ -63,12 +64,12 @@
 
     if(isset($_POST["total_check"])){
         
-        $username = $_POST["username"];
+        $username = htmlspecialchars($_POST["username"], ENT_QUOTES);
         $password = sha1(trim($_POST["password"]));
         $sex = $_POST["sex"];
-        $email = $_POST["email"];
+        $email = htmlspecialchars($_POST["email"], ENT_QUOTES);
         $phone = $_POST["phone"];
-
+        
         $sql = ("INSERT INTO shreyas_users (username, password, email, phone, sex) VALUES ('$username','$password','$email','$phone','$sex')");
 
         if(mysqli_query($conn, $sql)){

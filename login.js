@@ -2,9 +2,10 @@
 $("document").ready(function(){
 
     $("#loginBtn").on('click',function(){
+        var checkedValue = document.getElementById("rememberme").checked;
         var username = $("#uname").val();
         var password = $("#psswd").val();
-
+        // alert(checkedValue)
         if(username===""||username==null){
             iziToast.error({
                 title: 'Error',
@@ -23,13 +24,14 @@ $("document").ready(function(){
 
             return;
         } else {
-            loginUser(username, password);
+            loginUser(username, password, checkedValue);
         }
     });
 
     $('#uname').keyup(function(event){
         if(event.keyCode==13){
-            var username = $("#uname").val();
+        var checkedValue = document.getElementById("rememberme").checked;
+        var username = $("#uname").val();
             var password = $("#psswd").val();
 
             if(username===""||username==null){
@@ -50,14 +52,15 @@ $("document").ready(function(){
 
                 return;
             } else {
-                loginUser(username, password);
+                loginUser(username, password, checkedValue);
             }
         }
     });
 
     $('#psswd').keyup(function(event){
         if(event.keyCode==13){
-            var username = $("#uname").val();
+        var checkedValue = document.getElementById("rememberme").checked;
+        var username = $("#uname").val();
             var password = $("#psswd").val();
 
             if(username===""||username==null){
@@ -78,7 +81,7 @@ $("document").ready(function(){
 
                 return;
             } else {
-                loginUser(username, password);
+                loginUser(username, password, checkedValue);
             }
         }
     });
@@ -87,7 +90,7 @@ $("document").ready(function(){
     
 });
 
-function loginUser(username, password){
+function loginUser(username, password, rm){
     $.ajax({
         url: 'login.php', type: 'post',
 
@@ -95,9 +98,12 @@ function loginUser(username, password){
             'login': 1,
             'username': username,
             'password': password,
+            'rememberme': rm
         },
 
         success: function(response){
+
+           // alert(response)
             if(response=="success"){
                 iziToast.success({
                     title: 'Noice',

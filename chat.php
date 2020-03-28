@@ -11,7 +11,10 @@ if(isset($_POST['get_chat'])){
     $sender = $_POST['sender'];
     $receiver = $_POST['receiver'];
 
-    $sql = "SELECT id from shreyas_users where username = '$sender'";
+    $ser = htmlspecialchars($sender, ENT_QUOTES);
+    $rer = htmlspecialchars($receiver, ENT_QUOTES);
+
+    $sql = "SELECT id from shreyas_users where username = '$ser'";
     $request = mysqli_query($conn, $sql);
 
     if(mysqli_num_rows($request)==1){
@@ -23,7 +26,7 @@ if(isset($_POST['get_chat'])){
         exit();
     }
 
-    $sql = "SELECT id from shreyas_users where username = '$receiver'";
+    $sql = "SELECT id from shreyas_users where username = '$rer'";
     $request = mysqli_query($conn, $sql);
 
     if(mysqli_num_rows($request)==1){
@@ -41,9 +44,6 @@ if(isset($_POST['get_chat'])){
     if($convid=="notset"){
         $convid = startconvo($sid, $rid);
     } 
-    // echo $convid;
-    // echo "^".$convid;
-    // exit();
 
     $sql = "SELECT * from $convid";
     $result = mysqli_query($conn, $sql);
@@ -55,12 +55,13 @@ if(isset($_POST['get_chat'])){
         $num = mysqli_num_rows($result);
         while($row=mysqli_fetch_assoc($result)){
             if($row['sender']==$sid){
-                $output = $row['message']."±".$sender."±".$row['mid']; 
+                $m = htmlspecialchars_decode($row['message'], ENT_QUOTES);
+                $output = $m."±".$sender."±".$row['mid']; 
             } else {
-                $output = $row['message']."±".$receiver."±".$row['mid'];
+                $m = htmlspecialchars_decode($row['message'], ENT_QUOTES);
+                $output = $m."±".$receiver."±".$row['mid'];
             }
-
-            
+      
             echo $output."¬";
         }
         exit();
@@ -79,7 +80,7 @@ function startconvo($sid, $rid){
     $name = "shreyas_convid_".$l."_".$g;
 
     global $conn;
-    $sqli = "create table $name (mid int NOT NULL AUTO_INCREMENT PRIMARY KEY, message varchar(250), sender int, receiver int)";
+    $sqli = "create table $name (mid int NOT NULL AUTO_INCREMENT PRIMARY KEY, message varchar(12000), sender int, receiver int)";
     
     if(mysqli_query($conn, $sqli)){
         $sqli = "insert into shreyas_conversations values ('$name')";
@@ -121,8 +122,8 @@ function check($sid, $rid){
 
 if(isset($_POST["check_online"])){
     $receiver = $_POST['receiver'];
-    
-    $sql = "SELECT loggedin FROM shreyas_users where username = '$receiver'";
+    $rer = htmlspecialchars($receiver, ENT_QUOTES);
+    $sql = "SELECT loggedin FROM shreyas_users where username = '$rer'";
 
     $request = mysqli_query($conn, $sql);
 
@@ -143,7 +144,8 @@ if(isset($_POST['sendmsg'])){
     $sender = $_POST['sender'];
     $receiver = $_POST['receiver'];
 
-    $sql = "SELECT id from shreyas_users where username = '$sender'";
+    $ser = htmlspecialchars($sender, ENT_QUOTES);
+    $sql = "SELECT id from shreyas_users where username = '$ser'";
     $request = mysqli_query($conn, $sql);
 
     if(mysqli_num_rows($request)==1){
@@ -154,8 +156,8 @@ if(isset($_POST['sendmsg'])){
         echo "notfound";
         exit();
     }
-
-    $sql = "SELECT id from shreyas_users where username = '$receiver'";
+    $rer = htmlspecialchars($receiver, ENT_QUOTES);
+    $sql = "SELECT id from shreyas_users where username = '$rer'";
     $request = mysqli_query($conn, $sql);
 
     if(mysqli_num_rows($request)==1){
@@ -178,7 +180,7 @@ if(isset($_POST['sendmsg'])){
     
     $name = "shreyas_convid_".$l."_".$g;
     // $name = "convid_1_2";
-
+    $m = htmlspecialchars($msg, ENT_QUOTES);
     $sql = "INSERT INTO $name (message, sender, receiver) VALUES ('$msg', '$sid', '$rid')";
 
     if(mysqli_query($conn, $sql)){

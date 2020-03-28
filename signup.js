@@ -72,6 +72,20 @@ $('document').ready(function(){
         }
     });
 
+    $('#password').on('input', function(){
+        var cnfpass = $('#cnfpassword').val();
+        var pass = $('#password').val(); 
+
+        if(cnfpass!=pass){
+            document.getElementById("cnfp_error").innerHTML = "Passwords don't match";
+            passs=0;
+        } else {
+            document.getElementById("cnfp_error").innerHTML = "";
+            passs=1;
+            // alert(passs);
+        }
+    });
+
     
     $('#phone').on('input', function(){
         var phone = $('#phone').val();
@@ -183,9 +197,9 @@ $('document').ready(function(){
                                 position: 'topCenter',
                                 title: 'NOICE',
                                 message: 'Registration successful! Redirecting to login page...',
-                                timeout: 3000
+                                timeout: 1000
                             });
-                            setTimeout(function(){window.location.replace('login.html')}, 3000);
+                            setTimeout(function(){window.location.replace('loginpage.php')}, 1000);
                         } else {
                             iziToast.error({
                                 title: 'Bummer',
@@ -193,7 +207,6 @@ $('document').ready(function(){
                                 message: response,
                             });
 
-                            //window.location.replace('login.html');
                         }
                    }
               });
