@@ -209,12 +209,12 @@ body{
     width: 100%;
     height: 100%;
     grid-column: 2 / span 1;
-    display: grid;
-    grid-template-rows: 1fr 14fr 1fr;
+    display: flex;
+    flex-direction: column;
 }
 
 #messages-header{
-    
+    height: 61px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -242,9 +242,7 @@ body{
 #chatimg{
     display: none;
 }
-#messages-area{
-    grid-row: 2;
-    
+#messages-area{    
     /* border-bottom: 1px solid black; */
     display: flex;
     flex-direction: column;
@@ -256,11 +254,12 @@ body{
  
 
 .message-send-div{
-    grid-row: 3;
+    height: 61px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-top: 0px;
 }
 
 #message-input-container{
@@ -390,9 +389,9 @@ body{
 .users-list{
     z-index: 0;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
     width: inherit;
-    height: 100%;
+    height: 827.56px;
     background-color: #f2f2f2;
 }
 

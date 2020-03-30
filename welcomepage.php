@@ -59,7 +59,7 @@
          <!-- FORM STARTS HERE-->   <form name="picUpload" id="picUpload">
                                     <div id="scFirstForm">
                                         <div id="dpDiv">
-                                            <img src="pictures/defaultdp.png" alt="Profile Picture" id="dp"><!-- Change src to blank after editing onload function in js -->
+                                            <img src="pictures/def.png" alt="Profile Picture" id="dp"><!-- Change src to blank after editing onload function in js -->
                                         </div>
                                         
                                         <input type="file" id="file" name="file">
