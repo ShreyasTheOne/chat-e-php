@@ -670,7 +670,7 @@ function pushMessage(str){
 function sendMessage(){
     var msg = $("#message-input").val();
     document.getElementById("message-input").value = "";
-    // alert($msg);
+    //alert($msg);
 
     $.ajax({
         url: 'chat.php', type: 'post',

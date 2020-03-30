@@ -55,10 +55,11 @@ if(isset($_POST['get_chat'])){
         $num = mysqli_num_rows($result);
         while($row=mysqli_fetch_assoc($result)){
             if($row['sender']==$sid){
-                $m = htmlspecialchars_decode($row['message'], ENT_QUOTES);
+                // $m = htmlspecialchars_decode($row['message'], ENT_QUOTES);
+                $m = $row['message'];
                 $output = $m."±".$sender."±".$row['mid']; 
             } else {
-                $m = htmlspecialchars_decode($row['message'], ENT_QUOTES);
+                $m = $row['message'];
                 $output = $m."±".$receiver."±".$row['mid'];
             }
       
@@ -181,7 +182,7 @@ if(isset($_POST['sendmsg'])){
     $name = "shreyas_convid_".$l."_".$g;
     // $name = "convid_1_2";
     $m = htmlspecialchars($msg, ENT_QUOTES);
-    $sql = "INSERT INTO $name (message, sender, receiver) VALUES ('$msg', '$sid', '$rid')";
+    $sql = "INSERT INTO $name (message, sender, receiver) VALUES ('$m', '$sid', '$rid')";
 
     if(mysqli_query($conn, $sql)){
         echo "s";
