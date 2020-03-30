@@ -579,7 +579,7 @@ function showConversation(sender, receiver){
     showConvRepeated(sender, receiver);
     
     
-    setInterval(function(){ showConvRepeated(sender, receiver);}, 100);
+    setInterval(function(){ showConvRepeated(sender, receiver);}, 500);
     
 }
 
