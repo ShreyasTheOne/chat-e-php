@@ -14,55 +14,18 @@ if(isset($_POST['get_chat'])){
     $ser = htmlspecialchars($sender, ENT_QUOTES);
     $rer = htmlspecialchars($receiver, ENT_QUOTES);
 
-    $sql = "SELECT id from shreyas_users where username = '$ser'";
-    $request = mysqli_query($conn, $sql);
+    $sql = "SELECT * FROM shreyas_conversations where (sender = '$ser' AND receiver='$rer') OR (sender = '$rer' AND receiver='$ser')";
 
-    if(mysqli_num_rows($request)==1){
-        while($row = mysqli_fetch_assoc($request)){
-            $sid = $row['id'];
-        }
-    } else{
-        echo "notfound";
-        exit();
-    }
-
-    $sql = "SELECT id from shreyas_users where username = '$rer'";
-    $request = mysqli_query($conn, $sql);
-
-    if(mysqli_num_rows($request)==1){
-        while($row = mysqli_fetch_assoc($request)){
-            $rid = $row['id'];
-        }
-    } else{
-        echo "notfound";
-        exit();
-    }
-
-    $convid = check($sid, $rid);
-    
-
-    if($convid=="notset"){
-        $convid = startconvo($sid, $rid);
-    } 
-
-    $sql = "SELECT * from $convid";
     $result = mysqli_query($conn, $sql);
 
     if(mysqli_num_rows($result)==0){
         echo "yettobegin";
         exit();
     }else{
-        $num = mysqli_num_rows($result);
         while($row=mysqli_fetch_assoc($result)){
-            if($row['sender']==$sid){
-                // $m = htmlspecialchars_decode($row['message'], ENT_QUOTES);
-                $m = $row['message'];
-                $output = $m."±".$sender."±".$row['mid']; 
-            } else {
-                $m = $row['message'];
-                $output = $m."±".$receiver."±".$row['mid'];
-            }
-      
+            
+            $output = $row['message']."±".$row['sender'];
+
             echo $output."¬";
         }
         exit();
@@ -146,43 +109,10 @@ if(isset($_POST['sendmsg'])){
     $receiver = $_POST['receiver'];
 
     $ser = htmlspecialchars($sender, ENT_QUOTES);
-    $sql = "SELECT id from shreyas_users where username = '$ser'";
-    $request = mysqli_query($conn, $sql);
-
-    if(mysqli_num_rows($request)==1){
-        while($row = mysqli_fetch_assoc($request)){
-            $sid = $row['id'];
-        }
-    } else{
-        echo "notfound";
-        exit();
-    }
     $rer = htmlspecialchars($receiver, ENT_QUOTES);
-    $sql = "SELECT id from shreyas_users where username = '$rer'";
-    $request = mysqli_query($conn, $sql);
-
-    if(mysqli_num_rows($request)==1){
-        while($row = mysqli_fetch_assoc($request)){
-            $rid = $row['id'];
-        }
-    } else{
-        echo "notfound";
-        exit();
-    }
-
-
-    if($sid<$rid){
-        $l = $sid;
-        $g = $rid;
-    } else{
-        $l = $rid;
-        $g = $sid;
-    }
-    
-    $name = "shreyas_convid_".$l."_".$g;
-    // $name = "convid_1_2";
     $m = htmlspecialchars($msg, ENT_QUOTES);
-    $sql = "INSERT INTO $name (message, sender, receiver) VALUES ('$m', '$sid', '$rid')";
+
+    $sql = "INSERT INTO shreyas_conversations (message, sender, receiver) VALUES ('$m', '$ser', '$rer')";
 
     if(mysqli_query($conn, $sql)){
         echo "s";

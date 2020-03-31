@@ -648,7 +648,6 @@ function pushMessage(str){
     var text, setter;
         text = arr[0];
         setter = arr[1];  
-    var mid = arr[2];
     
     var mdiv = document.createElement("div");
 
