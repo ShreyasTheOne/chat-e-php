@@ -32,58 +32,6 @@ if(isset($_POST['get_chat'])){
     }
 }
 
-function startconvo($sid, $rid){
-    if($sid<$rid){
-        $l = $sid;
-        $g = $rid;
-    } else{
-        $l = $rid;
-        $g = $sid;
-    }
-
-    $name = "shreyas_convid_".$l."_".$g;
-
-    global $conn;
-    $sqli = "create table $name (mid int NOT NULL AUTO_INCREMENT PRIMARY KEY, message varchar(12000), sender int, receiver int)";
-    
-    if(mysqli_query($conn, $sqli)){
-        $sqli = "insert into shreyas_conversations values ('$name')";
-        if(mysqli_query($conn, $sqli)){
-            return $name;
-        }
-    } else {
-        return "fail";
-    }
-    
-}
-
-function check($sid, $rid){
-    if($sid<$rid){
-        $l = $sid;
-        $g = $rid;
-    } else{
-        $l = $rid;
-        $g = $sid;
-    }
-    
-    $name = "shreyas_convid_".$l."_".$g;
-    // $name = "convid_1_2";
-    
-    $sqli = "SELECT * FROM shreyas_conversations where convid='$name'";
-    global $conn;
-    $res = mysqli_query($conn, $sqli);
-
-    if(mysqli_num_rows($res)==0){
-        return "notset";
-    } else {
-       while($row=mysqli_fetch_assoc($res)){
-           $x = $row['convid'];
-       }
-       return $x;
-    }
-
-}
-
 if(isset($_POST["check_online"])){
     $receiver = $_POST['receiver'];
     $rer = htmlspecialchars($receiver, ENT_QUOTES);
