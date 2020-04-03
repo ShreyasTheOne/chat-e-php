@@ -576,13 +576,15 @@ function showConversation(sender, receiver){
 
     
     $("#messages-area").empty();
+    clearInterval(interval);
+    messagesLength = 0;
     showConvRepeated(sender, receiver);
     
     
-    setInterval(function(){ showConvRepeated(sender, receiver);}, 500);
+    var interval = setInterval(function(){ showConvRepeated(sender, receiver);}, 500);
     
 }
-
+var messagesLength =0;
 function showConvRepeated(sender){
     //alert(sender+ " " + receiver);
     checkLoggedIn();
@@ -602,7 +604,10 @@ function showConvRepeated(sender){
                 var mes = response.split("¬");
                 // alert(mes);
                 if(saplingshown){hideSapling();}
-                setMessages(mes);
+                if(messagesLength < mes.length){
+                    setMessages(mes);
+                    messagesLength = mes.length;
+                }
 
             }
         }
