@@ -574,7 +574,7 @@ function showConversation(sender, receiver){
         }
     });
 
-    
+    $("#messages-area").empty();
     $("#messages-area").empty();
     clearInterval(interval);
     messagesLength = 0;
